@@ -1,4 +1,4 @@
-# RapidDNS Go Query Tool
+# go-rapiddns
 
 A cross-platform command-line tool to fetch and export DNS records from [rapiddns.io](https://rapiddns.io/) by IP address or domain. Supports CSV, TSV, JSON, and plain text output formats. Designed for automation, scripting, and bulk DNS data analysis.
 
@@ -9,19 +9,30 @@ A cross-platform command-line tool to fetch and export DNS records from [rapiddn
 - Accepts input via command-line argument or standard input (stdin)
 - Cross-platform: Windows, Linux, macOS
 - GitHub Actions workflow for multi-platform builds
+- **Easy install via Go:**
+
+## Installation
+
+You can install directly from GitHub if you have Go 1.18+:
+
+```sh
+go install github.com/cdprf/go-rapiddns@latest
+```
+
+This will place the `go-rapiddns` binary in your `$GOPATH/bin` or `$GOBIN`.
 
 ## Usage
 
 ### Basic usage
 ```sh
-go run main.go <ip-or-domain> [--format=csv|tsv|json|text] [--verbose]
+go-rapiddns <ip-or-domain> [--format=csv|tsv|json|text] [--verbose]
 ```
 
 ### With stdin
 You can pipe input directly:
 ```sh
-echo "1.2.3.4" | go run main.go
-cat iplist.txt | go run main.go
+echo "1.2.3.4" | go-rapiddns
+cat iplist.txt | go-rapiddns
 ```
 If no positional argument is provided, the tool reads the first non-empty line from stdin as the IP/domain.
 
@@ -36,7 +47,7 @@ If no positional argument is provided, the tool reads the first non-empty line f
 
 ### Example
 ```sh
-go run main.go 8.8.8.8 --format=json --verbose
+go-rapiddns 8.8.8.8 --format=json --verbose
 ```
 
 ## Build
@@ -46,7 +57,7 @@ go run main.go 8.8.8.8 --format=json --verbose
 
 ### Build for your platform
 ```sh
-go build -o rapiddnsquery main.go
+go build -o go-rapiddns main.go
 ```
 
 ### Multi-platform build (via GitHub Actions)
